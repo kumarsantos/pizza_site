@@ -26,9 +26,7 @@ const Navbar = () => {
           >
             Products
           </li>
-          <li className={styles.listItem} onClick={() => router.push('/')}>
-            Menu
-          </li>
+          <li className={styles.listItem}>Menu</li>
           <Image src='/img/logo.png' alt='' width='160' height='69' />
           <li className={styles.listItem}>Events</li>
           <li className={styles.listItem}>Blog</li>
@@ -36,7 +34,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className={styles.item}>
-        <div className={styles.cart}>
+        <div className={styles.cart} onClick={() => router.push('/cart')}>
           <Image src='/img/cart.png' alt='' width='30' height='30' />
           <div className={styles.counter}>2</div>
         </div>
