@@ -1,9 +1,12 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 import styles from '../styles/Navbar.module.css';
 
 const Navbar = () => {
   const router = useRouter();
+
+  const { quantity } = useSelector((state) => state.cart);
   return (
     <div className={styles.container}>
       <div className={styles.item}>
@@ -20,12 +23,7 @@ const Navbar = () => {
           <li className={styles.listItem} onClick={() => router.push('/')}>
             Home
           </li>
-          <li
-            className={styles.listItem}
-            onClick={() => router.push('/product')}
-          >
-            Products
-          </li>
+          <li className={styles.listItem}>Products</li>
           <li className={styles.listItem}>Menu</li>
           <Image src='/img/logo.png' alt='' width='160' height='69' />
           <li className={styles.listItem}>Events</li>
@@ -36,7 +34,7 @@ const Navbar = () => {
       <div className={styles.item}>
         <div className={styles.cart} onClick={() => router.push('/cart')}>
           <Image src='/img/cart.png' alt='' width='30' height='30' />
-          <div className={styles.counter}>2</div>
+          <div className={styles.counter}>{quantity}</div>
         </div>
       </div>
     </div>

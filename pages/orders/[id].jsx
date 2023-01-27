@@ -1,4 +1,4 @@
-import styles from '../../styles/order.module.css';
+import styles from '../../styles/Orders.module.css';
 import Image from 'next/image';
 
 const Orders = () => {

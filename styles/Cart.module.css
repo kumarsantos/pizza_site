@@ -35,8 +35,8 @@
 
 .wrapper {
   width: 90%;
-  max-height: 300px;
-  background-color: #333;
+  max-height: 350px;
+  background-color: rgb(88, 88, 88);
   padding: 50px;
   padding-top: 10px;
   display: flex;
@@ -48,14 +48,45 @@
 .totalTextTitle {
   margin-right: 10px;
 }
+.paypalWrapper {
+  margin-top: 12px;
+}
 
 .button {
-  height: 30px;
+  padding: 10px;
   color: #d1411e;
   font-weight: bold;
   cursor: pointer;
   margin-top: 20px;
+  margin-bottom: 10px;
 }
+.cashOnDelivery {
+  padding: 10px;
+  border-radius: 4px;
+  border: none;
+  width: 100%;
+  color: #0c9e61;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+.cashOnDelivery:hover {
+  background-color: rgb(235, 234, 234);
+}
+
+.spinner {
+  padding: 10px;
+  border-radius: 4px;
+  border: none;
+  width: 100%;
+  color: #0c9e61;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: #fff;}
 
 @media screen and (max-width: 480px) {
   .container {
