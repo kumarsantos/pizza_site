@@ -1,0 +1,40 @@
+.container {
+  padding: 50px;
+  display: flex;
+}
+
+.item {
+  flex: 1;
+}
+
+.table {
+  width: 100%;
+  border-spacing: 20px;
+}
+.table tr td {
+  text-align: center;
+}
+.buttonDelete {
+  border: none;
+  padding: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.buttonDelete:first-child {
+  background-color: teal;
+  margin-right: 10px;
+}
+.buttonDelete:last-child {
+  background-color: rgb(199, 58, 58);
+}
+
+.stageButton {
+  border: none;
+  padding: 5px;
+  color: white;
+  cursor: pointer;
+  background-color: rgb(69, 45, 126);
+  font-size: 12px;
+}

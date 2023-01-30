@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { reset } from '@/redux/cartSlice';
+import { OrderDetails } from '@/components/OrderDetails';
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -19,15 +20,21 @@ const Cart = () => {
   const style = { layout: 'vertical' };
 
   const [open, setOpen] = useState(false);
+  const [cash, setCash] = useState(false);
   const router = useRouter();
 
-  const handlePayment = () => {};
+  const cashOnDelivery = () => {
+    setCash(true);
+  };
 
   const createOrder = async (data) => {
     try {
       const res = await axios.post(`http://localhost:3000/api/orders`, data);
-      res.status === 201 && router.push('/orders/' + res.data._id);
-      dispatch(reset());
+      if (res) {
+        setCash(false);
+        router.push('/orders/' + res.data._id);
+        dispatch(reset());
+      }
     } catch (error) {
       console.log(error);
     }
@@ -84,6 +91,7 @@ const Cart = () => {
                 address: shipping.address.address_line_1,
                 total: cart.total,
                 method: 1,
+                phoneNumber: '',
               });
             });
           }}
@@ -154,9 +162,12 @@ const Cart = () => {
           <div className={styles.totalText}>
             <b className={styles.totalTextTitle}>Total:</b>${cart?.total}
           </div>
-          {open ? (
+          {open && cart?.total ? (
             <div className={styles.paypalWrapper}>
-              <button className={styles.cashOnDelivery} onClick={handlePayment}>
+              <button
+                className={styles.cashOnDelivery}
+                onClick={cashOnDelivery}
+              >
                 CASH ON DELIVERY
               </button>
               <PayPalScriptProvider
@@ -178,6 +189,7 @@ const Cart = () => {
           )}
         </div>
       </div>
+      {cash && <OrderDetails total={cart.total} createOrder={createOrder} />}
     </div>
   );
 };

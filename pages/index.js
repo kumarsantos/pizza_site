@@ -5,10 +5,14 @@ import styles from '@/styles/Home.module.css';
 import Featured from '@/components/Featured';
 import PizzaList from '@/components/PizzaList';
 import axios from 'axios';
+import AddButton from '@/components/AddButton';
+import { Add } from '@/components/Add';
+import { useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function Home({ productList }) {
+export default function Home({ productList, isAdmin }) {
+  const [close, setClose] = useState(true);
   return (
     <div className={styles.container}>
       <Head>
@@ -19,17 +23,25 @@ export default function Home({ productList }) {
       </Head>
       <main>
         <Featured />
+        {isAdmin && <AddButton setClose={setClose} isAdmin={isAdmin} />}
         <PizzaList pizzaList={productList} />
+        {!close && <Add setClose={setClose} />}
       </main>
     </div>
   );
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (ctx) => {
+  const myCookie = ctx.req?.cookies || '';
+  let isAdmin = false;
+  if (myCookie.token === process.env.TOKEN) {
+    isAdmin = true;
+  }
   const res = await axios.get('http://localhost:3000/api/products');
   return {
     props: {
       productList: res.data,
+      isAdmin,
     },
   };
 };

@@ -1,0 +1,98 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(90, 89, 89, 0.829);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  position: fixed;
+}
+
+.wrapper {
+  padding: 24px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.title {
+  line-height: 0px;
+  font-size: 24px;
+  text-align: center;
+  color: rgb(110, 110, 110);
+}
+.close {
+  font-weight: 600;
+  width: max-content;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 2px;
+  color: #fff;
+  background-color: rgb(194, 105, 172);
+}
+.close:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.label {
+  font-size: 12px;
+  font-weight: 600;
+}
+.input {
+  padding: 6px;
+  outline: none;
+}
+.input::placeholder {
+  color: gray;
+  font-weight: 500;
+}
+.add {
+  padding: 8px;
+  outline: none;
+  border: none;
+  background-color: rgb(152, 214, 238);
+  font-weight: 500;
+}
+
+.addButton {
+  padding: 8px;
+  outline: none;
+  border: none;
+  background-color: rgb(4, 96, 158);
+  font-weight: 500;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 24px;
+}
+
+.extraItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 4px;
+}
+.extraItem {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: gray;
+  padding: 4px;
+  border-radius: 2px;
+  color: white;
+  gap: 8px;
+}
+.extraItem > span {
+  flex: 1;
+}
