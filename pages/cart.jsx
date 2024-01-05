@@ -53,7 +53,7 @@ const Cart = () => {
           currency: currency,
         },
       });
-    }, [currency, showSpinner]);
+    }, [currency, showSpinner,dispatch]);
 
     return (
       <>
@@ -65,9 +65,8 @@ const Cart = () => {
           disabled={false}
           forceReRender={[amount, currency, style]}
           fundingSource={undefined}
-          createOrder={(data, actions) => {
-            return actions.order
-              .create({
+          createOrder={async(data, actions) => {
+            return await actions.order.create({
                 purchase_units: [
                   {
                     amount: {
