@@ -29,7 +29,7 @@ const Cart = () => {
 
   const createOrder = async (data) => {
     try {
-      const res = await axios.post(`http://localhost:3000/api/orders`, data);
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/orders`, data);
       if (res) {
         setCash(false);
         router.push('/orders/' + res.data._id);
