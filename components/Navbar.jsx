@@ -6,6 +6,11 @@ import styles from '../styles/Navbar.module.css';
 const Navbar = () => {
   const router = useRouter();
 
+  const handleRedirect=(id)=>{
+    const element=document.getElementById(id);
+    element?.scrollIntoView({behavior:'smooth'});
+  }
+
   const { quantity } = useSelector((state) => state.cart);
   return (
     <div className={styles.container}>
@@ -23,12 +28,14 @@ const Navbar = () => {
           <li className={styles.listItem} onClick={() => router.push('/')}>
             Home
           </li>
-          <li className={styles.listItem}>Products</li>
-          <li className={styles.listItem}>Menu</li>
-          <Image src='/img/logo.png' alt='' width='160' height='69' />
-          <li className={styles.listItem}>Events</li>
-          <li className={styles.listItem}>Blog</li>
-          <li className={styles.listItem}>Contact</li>
+          <li className={styles.listItem} onClick={() => handleRedirect('products')}>Products</li>
+          {/* <li className={styles.listItem}>Menu</li> */}
+          {/* <Image src='/img/logo.png' alt='' width='160' height='69' /> */}
+          <h1>SK PIZZA</h1>
+
+          {/* <li className={styles.listItem}>Events</li>
+          <li className={styles.listItem}>Blog</li> */}
+          {/* <li className={styles.listItem}>Contact</li> */}
         </ul>
       </div>
       <div className={styles.item}>

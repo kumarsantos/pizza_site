@@ -4,8 +4,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '@/redux/cartSlice';
+import PizzaList from '@/components/PizzaList';
 
-const Product = ({ product }) => {
+const Product = ({ product,pizzaList }) => {
   const [price, setPrice] = useState(product.prices[0]);
   const [size, setSize] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -37,6 +38,7 @@ const Product = ({ product }) => {
     dispatch(addProduct({ ...product, ...extras, quantity, price,size }));
   };
   return (
+    <>
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.imgContainer}>
@@ -90,6 +92,10 @@ const Product = ({ product }) => {
         </div>
       </div>
     </div>
+      <div>
+        <PizzaList hideAddToCartButton={true} pizzaList={pizzaList}/>
+      </div>
+      </>
   );
 };
 
@@ -99,9 +105,13 @@ export const getServerSideProps = async ({ params }) => {
   const res = await axios.get(
     `http://localhost:3000/api/products/${params.id}`
   );
+  const res1 = await axios.get(
+    `http://localhost:3000/api/products`
+  );
   return {
     props: {
       product: res.data,
+      pizzaList:res1.data
     },
   };
 };
