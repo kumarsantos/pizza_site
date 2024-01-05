@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Image from 'next/image';
-import styles from '../../styles/Admin.module.css';
+import React, { useState } from "react";
+import axios from "axios";
+import Image from "next/image";
+import styles from "../../styles/Admin.module.css";
 
 const Index = ({ orders, products }) => {
   const [productsList, setProductsList] = useState(products);
   const [orderList, setOrderList] = useState(orders);
-  const status = ['preparing', 'on the way', 'delivered'];
+  const status = ["preparing", "on the way", "delivered"];
 
   const handleEdit = async (product) => {};
   const handleChangeStage = async (id) => {
     try {
-      const res = await axios.put(`http://localhost:3000/api/orders/${id}`);
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/orders/${id}`
+      );
       const allOrders = orderList.map((order) => {
         if (order._id === id) {
           return res.data;
@@ -27,7 +29,7 @@ const Index = ({ orders, products }) => {
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:3000/api/products/${id}`
+        `${process.env.NEXT_PUBLIC_API_URL}/api/products/${id}`
       );
       if (res) {
         const allProduct = productsList.filter((pro) => pro._id !== id);
@@ -60,8 +62,8 @@ const Index = ({ orders, products }) => {
                     src={product.img}
                     width={50}
                     height={50}
-                    objectFit='cover'
-                    alt=''
+                    objectFit="cover"
+                    alt=""
                   />
                 </td>
                 <td>{product._id.slice(0, 5)}...</td>
@@ -105,7 +107,7 @@ const Index = ({ orders, products }) => {
                 <td>{order?._id?.slice(0, 5)}...</td>
                 <td>{order?.customer}</td>
                 <td>${order?.total}</td>
-                <td>{order?.method === 0 ? 'CASH' : 'PAID'}</td>
+                <td>{order?.method === 0 ? "CASH" : "PAID"}</td>
                 <td>{status[order?.status]}</td>
                 <td>
                   <button
@@ -126,17 +128,21 @@ const Index = ({ orders, products }) => {
 };
 
 export const getServerSideProps = async (ctx) => {
-  const myCookie = ctx.req?.cookies || '';
+  const myCookie = ctx.req?.cookies || "";
   if (myCookie.token !== process.env.TOKEN) {
     return {
       redirect: {
-        destination: '/admin/login',
+        destination: "/admin/login",
         permanent: false,
       },
     };
   }
-  const products = await axios.get('http://localhost:3000/api/products');
-  const orders = await axios.get('http://localhost:3000/api/orders');
+  const products = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/products`
+  );
+  const orders = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/orders`
+  );
 
   return {
     props: {

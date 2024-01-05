@@ -44,7 +44,7 @@ export const Add = ({ setClose = { setClose } }) => {
           prices,
           extraOptions,
         };
-        await axios.post('http://localhost:3000/api/products', collectedData);
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/products`, collectedData);
         setIsLoading(false);
         setClose(true);
         router.reload(window.location.pathname);

@@ -16,7 +16,7 @@ const Login = () => {
         setError(true);
         return;
       }
-      const res = await axios.post('http://localhost:3000/api/login', {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
         username,
         password,
       });
