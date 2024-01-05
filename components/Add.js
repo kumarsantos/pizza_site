@@ -32,7 +32,7 @@ export const Add = ({ setClose = { setClose } }) => {
     try {
       setIsLoading(true);
       const uploadRes = await axios.post(
-        'https://api.cloudinary.com/v1_1/santoshkumarsah/image/upload',
+        'https://api.cloudinary.com/v1_1/santoshkumarsah/image/upload', //santoshkumarsah is name of cloudinary for santosh
         data
       );
       const { url } = uploadRes?.data;
